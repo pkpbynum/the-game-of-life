@@ -1,6 +1,6 @@
 //Peter Bynum
 
-let rows, cols, mainArray, state, res;
+let rows, cols, mainArray, state, res, prnt, chld, cnvs;
 
 
 
@@ -14,13 +14,13 @@ function make2DArray(cols, rows) {
 
 
 function setup() {
-  frameRate(8);
-  var canvas = createCanvas(windowWidth + 30, windowHeight + 20);
-  canvas.position(-5,-5);
-  canvas.style('z-index', '-1');
-  res = (width + height) / 80.0;
-  cols = floor(width / res);
-  rows = floor(height / res);
+  frameRate(10);
+  parent = select('#coding-wrap');
+  canvas = createCanvas(windowWidth, windowHeight);
+  canvas.parent(parent);
+  res = width / 30.0;
+  cols = floor(width / res)+1;
+  rows = floor(height / res)+2;
   mainArray = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
@@ -31,7 +31,8 @@ function setup() {
 
 
 function draw() {
-  background(200);
+  rectMode(CENTER);
+  background(0);
   fill(57, 92, 107);
   stroke(57, 92, 107);
   let newArray = make2DArray(cols, rows);
@@ -85,10 +86,10 @@ function mouseMoved() {
 
 //Resets mainArray and newArray to match browser window size
 function windowResized() {
-  resizeCanvas(windowWidth + 30, windowHeight + 20);
-  res = (width + height) / 80.0;
-  cols = floor(width / res);
-  rows = floor(height / res);
+  resizeCanvas(windowWidth, windowHeight);
+  res = (width) / 30.0;
+  cols = floor(width / res)+1;
+  rows = floor(height / res)+2;
   mainArray = make2DArray(cols, rows);
   for (let i = 0; i < cols; i++) {
     for (let j = 0; j < rows; j++) {
